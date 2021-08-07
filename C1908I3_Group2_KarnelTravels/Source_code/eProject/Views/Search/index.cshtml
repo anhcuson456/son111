@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "index";
+    Layout = "~/Views/Share/_Layout.cshtml";
+}
+<main id="main">
+    <section id="team" class="team">
+        <div class="container">
+
+            <div class="section-title" data-aos="zoom-out">
+                <h2>List tourist spots</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title" data-aos="zoom-out">
+                        <form asp-controller="search" asp-action="SearchTourAll" method="get">
+                            <div class="col-md-11 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" name="keyword" class="form-control" placeholder="Search by name, location, desciption, quality...">
+                                    <span class="input-group-btn">
+                                        <input type="submit" class="btn btn-secondary" value="Go !" />
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-title" data-aos="zoom-out">
+                        <form asp-controller="search" asp-action="SearchToubyCate" method="get">
+                            <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <select name="cate">
+                                        @foreach (var category in ViewBag.catetours)
+                                        {
+                                            <option value="@category.Id">@category.Name</option>
+                                        }
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <input type="submit" class="btn btn-secondary" value="Search by category !" />
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var tourist in ViewBag.tourist)
+                {
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                        <div class="member" data-aos="fade-up">
+
+                            <div class="member-img">
+                                <img src="~/Img/@tourist.Imgs[0].Name" class="img-fluid" alt="">
+                                <div class="social">
+                                    <a asp-controller="tourist" asp-action="detail" asp-route-id="@tourist.Id" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>@tourist.Name</h4>
+                                <span>@tourist.Category.Name</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section><!-- End Team Section -->
+
+
+</main>

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "IndexCom";
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Default Example <small>Comment</small></h2>
+                <div class="page-title">
+                    <div class="title_right">
+                    </div>
+                </div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Id</th>
+                                <th>Account</th>
+                                <th>Tourist spots</th>
+                                <th>Services</th>
+                                <th>Content</th>
+                                <th>Active</th>
+                            </tr>
+                            @foreach (var cmt in ViewBag.comment)
+                            {
+
+                        <tr>
+                            <td>@cmt.Id</td>
+                            <td>@cmt.Acc.Name</td>
+                            <td>
+                                @if (cmt.TourId != null)
+                                {
+                                    @cmt.Tour.Name
+                                }
+                                else
+                                {
+                                    @cmt.TourId
+                                }
+                            </td>
+                            <td>
+                                @if (cmt.ServiId != null)
+                                {
+                                    @cmt.Servi.Name
+                                }
+                                else
+                                {
+                                    @cmt.ServiId
+                                }
+                            </td>
+                            <td>@cmt.Content</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="feedback" asp-action="deleteCom" asp-route-id="@cmt.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

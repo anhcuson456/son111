@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- FullCalendar -->
+    <link href="~/Admin/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="~/Admin/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+
+    <!-- Custom styling plus plugins -->
+    <link href="~/Admin/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><span>Karnel Travel</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>Admin management rights</h3>
+                            <ul class="nav side-menu">
+                                <!-- Home menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="dashboard" asp-action="index"><i class="fa fa-home"></i> Home </a>
+                                </li>
+                                <!-- Tourist menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="touristSpot" asp-action="index">Tourist spots<span class="fa fa-chevron-down"></span></a>
+                                    <ul>
+                                        <li><a asp-area="admin" asp-controller="touristSpot" asp-action="create">Create</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Service menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="service" asp-action="index"> Services<span class="fa fa-chevron-down"></span></a>
+                                    <ul>
+                                        <li><a asp-area="admin" asp-controller="service" asp-action="create">Create</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Account menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="account" asp-action="index"> Account<span class="fa fa-chevron-down"></span></a>
+                                    <ul>
+                                        <li><a asp-area="admin" asp-controller="account" asp-action="createAcc">Create</a></li>
+                                    </ul>
+
+                                </li>
+                                <!-- Vehicle menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="travel" asp-action="index"> Vehicles</a>
+                                    <ul>
+                                        <li><a asp-area="admin" asp-controller="travel" asp-action="create">Create</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Category Tour menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="category" asp-action="index2">Category Tourist</a>
+                                    <ul>
+                                        <li><a asp-area="admin" asp-controller="category" asp-action="createtour">Create</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Category Service menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="category" asp-action="index">Category Service</a>
+                                    <ul>
+                                        <li><a asp-area="admin" asp-controller="category" asp-action="create">Create</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Comment menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="feedback" asp-action="IndexCom"> Comment </a>
+                                </li>
+                                <!-- Feedback menu -->
+                                <li>
+                                    <a asp-area="admin" asp-controller="feedback" asp-action="index"> Feedback </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" asp-controller="account" asp-action="login">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+        </div>
+    </div>
+</body>
+</html>

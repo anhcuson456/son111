@@ -1,0 +1,7 @@
+﻿@{
+    ViewData["Title"] = "index";
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Http;
+
+<h1><b><i>Wellcome to admin management page, @Context.Session.GetString("username")</i></b></h1>

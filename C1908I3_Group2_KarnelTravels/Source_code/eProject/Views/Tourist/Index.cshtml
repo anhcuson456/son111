@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "index";
+    Layout = "~/Views/Share/_Layout.cshtml";
+}
+<main id="main">
+    <!-- ======= Tourist Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Tourist Spots</h2>
+                <ol>
+                    <li><a asp-controller="home" asp-action="index">Home</a></li>
+                    <li>Infomation</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tourist spots</h2>
+                <p>Jobs fill your pocket, adventures fill your soul. You can go anywhere, if you want.</p>
+            </div>
+            @foreach (var tourist in ViewBag.touristSpots)
+            {
+                @if (tourist.Stt == true)
+                {
+                    <div class="row" data-aos="fade-up">
+                        <div class="col-md-5">
+                            <img src="~/Img/@tourist.Imgs[0].Name" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-7 pt-4">
+                            <h3>@tourist.Name</h3>
+                            <p class="fst-italic">
+                                @tourist.Descrip
+                            </p>
+                            <a asp-controller="tourist" asp-action="detail" asp-route-id="@tourist.Id">View detail</a>
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+            <div class="row" data-aos="fade-up">
+                <div class="col-md-5 order-1 order-md-2">
+                    <img src="~/Img/T201.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 pt-5 order-2 order-md-1">
+                    <h3>Ho May</h3>
+                    <p class="fst-italic">
+                        1A Tran Phu street, Ward 1, Vung Tau.
+                    </p>
+                    <p>
+                        About 100 kilometers east of Saigon, Ho May is considered the most comprehensive and famous tourist complex in the coastal city of Vung Tau. Located at an altitude of more than 210m on Big Mountain, Ho May tourist area has a mild, fresh, cool climate all year round. From here, you can see a multi-faceted Vung Tau, with the beauty of a blend of rich mountains and a bustling city.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" data-aos="fade-up">
+                <div class="col-md-5">
+                    <img src="~/Img/T301.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 pt-5">
+                    <h3>Sa Pa</h3>
+                    <p>Sa Pa District, located in Lao Cai Province, Vietnam. The beautiful town of Sapa has a majestic natural landscape, which is likened to a convergence of earth and sky, the sapa weather is very unique with four seasons in a day. Traveling to Sapa will bring you unforgettable special experiences about the scenery and culture of indigenous peoples.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Features Section -->
+
+</main><!-- End #main -->

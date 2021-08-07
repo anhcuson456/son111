@@ -1,0 +1,109 @@
+﻿@model eProject.Models.Servi
+@{
+    ViewData["Title"] = "detailser";
+    Layout = "~/Views/Share/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Http;
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Tourist Details</h2>
+                <ol>
+                    <li><a asp-controller="home" asp-action="index">Home</a></li>
+                    <li><a asp-controller="tourist" asp-action="index" asp->Tourist infomation</a></li>
+                    <li>Detail hotel & restaurant</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Tourist Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper-container">
+                        <div class="swiper-wrapper align-items-center">
+                            @foreach (var image in ViewBag.service.Imgs)
+                            {
+                                <div class="swiper-slide">
+                                    <img src="~/Img/@image.Name" alt="">
+                                </div>
+                            }
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div>
+                            <h4 class="d-none d-lg-block">Related vehicles </h4>
+                            <ul class="nav nav-tabs row d-flex">
+                                @foreach (var travel in ViewBag.service.ServiTravels)
+                                {
+                                    <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="100">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
+                                            <i class="ri-body-scan-line"><img src="~/Img/@travel.Travel.Img" width="240" height="100" /></i>
+                                            <h4 class="d-none d-lg-block">@travel.Travel.Name</h4>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3>@ViewBag.service.Name information</h3>
+
+
+                        <ul>
+                            <li><strong>Address </strong>: @ViewBag.service.Addr</li>
+                            <li><strong>Category </strong>: @ViewBag.service.Category.Name</li>
+                            <li><strong>Price : form </strong> @ViewBag.service.Price VND</li>
+                            <li><strong>Tourist </strong>: @ViewBag.service.Tour.Name</li>
+                        </ul>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>Description </h2>
+                        <p class="fst-italic">
+                            @ViewBag.service.Descrip
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section><!-- End Portfolio Details Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <h2><i>Comment</i></h2>
+            <div class="section-title" data-aos="zoom-out">
+                @if (Context.Session.GetString("username") != null)
+                {
+                    <form asp-controller="tourist" asp-action="commentSer" method="get">
+                        <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" name="Content" class="form-control" placeholder="Your comment...">
+                                <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-secondary" value="Go !" />
+                                    <input type="hidden" name="ServiId" value="@ViewBag.service.Id" />
+                                </span>
+                            </div>
+                        </div>
+
+                    </form>
+                }
+            </div>
+            @foreach (var cmt in ViewBag.service.Comments)
+            {
+                <p><b>@cmt.Acc.Name :</b> @cmt.Content</p>
+            }
+        </div>
+    </section>
+</main>

@@ -1,0 +1,33 @@
+﻿@{ ViewData["Title"] = "img";
+   Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml"; }
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Default Example <small>Images</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a asp-area="admin" asp-controller="touristSpot" asp-action="createImg" asp-route-id="@ViewBag.tourSpot.Id"><h4>Create images</h4></a>
+                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>ID</th>
+                                <th>Photo</th>
+                                <th colspan="2">Active</th>
+                            </tr>
+                            @foreach (var image in ViewBag.tourSpot.Imgs)
+                            {
+                    <tr>
+                        <td>@image.Id</td>
+                        <td><img src="~/Img/@image.Name" width="100" height="120" /></td>
+                        <td><a asp-controller="touristSpot" asp-action="deleteImg" asp-route-id="@image.Id" onclick="return confirm('Are you sure?')">Delete</a></td>
+                    </tr>}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

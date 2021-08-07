@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "index";
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+@Html.Raw(TempData["msgID"])
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Default Example <small>restaurant, resort & hotel</small></h2>
+                <div class="page-title">
+                    <div class="title_right">
+                        <form asp-area="admin" asp-controller="service" asp-action="searchbyName" method="get">
+                            <div class="col-md-7 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" name="name" class="form-control" placeholder="Search by name...">
+                                    <span class="input-group-btn">
+                                        <input type="submit" class="btn btn-secondary" value="Go !" />
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Descrip</th>
+                                <th>Category</th>
+                                <th>TouristSpot</th>
+                                <th colspan="2">Active</th>
+                            </tr>
+                            @foreach (var servi in ViewBag.service)
+                            {
+                                <tr>
+                                    <td>@servi.Id</td>
+                                    <td>@servi.Name</td>
+                                    <td>@servi.Addr</td>
+                                    <td>@servi.Descrip</td>
+                                    <td>@servi.Category.Name</td>
+                                    <td>@servi.Tour.Name</td>
+                                    <td>
+                                        <a asp-area="admin" asp-controller="service" asp-action="edit" asp-route-id="@servi.Id">Edit</a> <br />
+                                        <a asp-area="admin" asp-controller="service" asp-action="delete" asp-route-id="@servi.Id" onclick="return confirm('Are you sure?')">Delete </a>
+
+                                    </td>
+                                    <td>
+                                        <a asp-area="admin" asp-controller="service" asp-action="img" asp-route-id="@servi.Id">Images</a>
+                                        <a asp-area="admin" asp-controller="service" asp-action="travel" asp-route-id="@servi.Id">Vehicles</a>
+                                    </td>
+                                </tr>
+                            }
+                            @Html.Raw(TempData["msg"])
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

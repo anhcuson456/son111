@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "index";
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Default Example <small>Feedback </small></h2>
+                <div class="page-title">
+                    <div class="title_right">
+                    </div>
+                </div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Address</th>
+                                <th>Content</th>
+                                <th>Active</th>
+
+                            </tr>
+                            @foreach (var feedback in ViewBag.feedback)
+                            {
+                                <tr>
+                                    <td>@feedback.Id</td>
+                                    <td>@feedback.Name</td>
+                                    <td>@feedback.Age</td>
+                                    <td>@feedback.Addr</td>
+                                    <td>@feedback.Content</td>
+
+                                    <td><a asp-controller="feedback" asp-action="delete" asp-route-id="@feedback.Id" onclick="return confirm('Are you sure?')">Delete</a></td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
